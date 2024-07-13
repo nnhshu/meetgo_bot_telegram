@@ -4,8 +4,8 @@ import React, { useEffect } from 'react';
 const VibrationComponent = () => {
   useEffect(() => {
     const handleTouch = () => {
-      if (navigator.vibrate) {
-        navigator.vibrate(200); // Rung 200ms
+      if (window.navigator.vibrate) {
+        window.navigator.vibrate(200); // Rung 200ms
       }
     };
 
