@@ -1,19 +1,18 @@
 "use client";
-import React, { useEffect } from 'react';
-import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import React, { useEffect, useState } from 'react';
+import { TelegramProvider, useTelegram } from "../lib/TelegramProvider";
 
 const VibrationComponent = () => {
+    const [webApp, setWebApp] = useState(null);
 
     const hapticsVibrate = async () => {
-        console.log(12)
-        await Haptics.vibrate();
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('rigid');   
+        console.log('clicked')
     };
 
     useEffect(() => {
         const handleTouch = () => {
-            if(window.navigator.userAgentData.mobile){
-                window.navigator.vibrate(100);
-            }
+            window.Telegram.WebApp.HapticFeedback.impactOccurred('rigid');   
         };
 
         // Thêm sự kiện chạm vào màn hình
@@ -26,10 +25,12 @@ const VibrationComponent = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Chạm vào màn hình để làm rung điện thoại</h1>
-            <button onClick={() => hapticsVibrate()}>check vibrate</button>
-        </div>
+        <TelegramProvider>
+            <div>
+                <button onClick={() => hapticsVibrate()}>check vibrate</button>
+            </div>
+        </TelegramProvider>
+        
     );
 };
 

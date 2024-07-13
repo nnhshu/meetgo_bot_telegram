@@ -1,10 +1,10 @@
-import Image from "next/image";
+import React from 'react';
 import VibrationComponent from './component/vibration'
 
 export default function Home() {
 	return (
 		<>
-		<VibrationComponent />
+			<VibrationComponent />
 		</>
 	);
 }
